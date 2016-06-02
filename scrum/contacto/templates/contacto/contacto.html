@@ -1,0 +1,11 @@
+{% extends 'contacto/base.html' %}
+{% block content %}
+    {% for Tarea in tareas %}
+        <div class="tarea">
+            <div class="date">
+                {{ Tarea.tarea_data_inicio }}
+            </div>
+            <h1><a href="{% url 'contacto.views.tarea_detail' pk=Tarea.tarea_id %}">{{ Tarea.tarea_nombre }}</a></h1>
+        </div>
+    {% endfor %}
+{% endblock content %}
