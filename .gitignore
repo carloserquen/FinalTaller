@@ -1,1 +1,8 @@
 virtualenv/
+contacto/migrations/__pycache__/
+tarea/migrations/__pycache__/
+proyecto/migrations/__pycache__/
+scrum/__pycache__/
+contacto/__pycache__/
+tarea/__pycache__/
+proyecto/__pycache__/

@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ContactoConfig(AppConfig):
+class TareaConfig(AppConfig):
     name = 'contacto'
