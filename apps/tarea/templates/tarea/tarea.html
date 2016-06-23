@@ -2,9 +2,9 @@
 {% block content %}
     {% for tarea in tareas %}
         <div class="tarea">
-            <div class="date">
+            <!--<div class="date">
                 {{ tarea.tarea_data_inicio }}
-            </div>
+            </div>-->
             <h1><a href="{% url 'tarea_detalle' tarea.id %}">{{ tarea.tarea_nombre }}</a></h1>
         </div>
     {% endfor %}

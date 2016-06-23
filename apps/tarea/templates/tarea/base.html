@@ -6,19 +6,44 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/tarea.css' %}">
+        <link rel="stylesheet" href="{% static 'css/960.css' %}">
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'css/css/text.css' %}">
     </head>
     <body>
         <div class="page-header">
-            <a href="{% url 'apps.tarea.views.tarea_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <h1><a href="/">Tareas Asignados</a></h1>
+            <!--<a href="{% url 'apps.tarea.views.list_task' %}" class="top-menu"></a>-->
+            <h1><a href="{% url 'apps.tarea.views.list_task' %}">Tareas Asignados</a></h1>
         </div>
-        <div class="content container">
-            <div class="row">
+        <div class="container_12">
+            <div class="grid_4 ">
                 <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
+                <h3><a href="{% url 'apps.tarea.views.list_task' %}">Pendientes</a></h3>
                 </div>
             </div>
+            <div class="grid_4 ">
+                <div class="col-md-8">
+                <h3><a href="{% url 'apps.tarea.views.list_task' %}">Proceso</a></h3>
+                </div>
+            </div>
+            <div class="grid_4 ">
+                <div class="col-md-8">
+                <h3><a href="{% url 'apps.tarea.views.list_task' %}">Terminados</a></h3>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="grid_4" id="izq1">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="grid_4" id="izq2">
+                <h1><a>tareas pendientes</a></h1>
+            </div>
+            <div class="grid_4" id="izq3">
+                <h1><a>tareas terminadas</a></h1>
+            </div>
+            <div class="clear"></div>
         </div>
     </body>
 </html>
