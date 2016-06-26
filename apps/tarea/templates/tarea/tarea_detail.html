@@ -12,6 +12,12 @@
         <style type="text/css">h1{
             font-size: 200%;
             }</style>
+        <style type="text/css">
+        .container label{
+            display: inline-block;
+            margin-right: 40px;
+        }
+    </style>
     </head>
     <body>
         <div class="page-header">
@@ -30,11 +36,17 @@
                 <div class="clear"></div>
                 <br/>
                 <p>Completada: {{ tarea.concluido}}</p>
+                <div class="container">
+                    <label><input type="radio" name="status" value="1">Pendiente</input></label>
+                    <label><input type="radio" name="status" value="2">Proceso</input></label>
+                    <label><input type="radio" name="status" value="3">Terminado</input></label>
+                </div>
                 {% if tarea.tarea_data_inicio %}
                     <div class="date">
                         {{ tarea.tarea_data_inicio }}
                     </div>
-                {% endif %}
+                {% endif %} 
+
             </div>   
         </div>      
     </body>
