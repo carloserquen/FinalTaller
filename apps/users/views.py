@@ -8,12 +8,19 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from .models import Usuario
+from apps.proyecto.models import Proyecto
 
 from braces.views import LoginRequiredMixin
 
 class PanelTV(LoginRequiredMixin, TemplateView):
     template_name = "users/panel.html"
     login_url = reverse_lazy('users_login')
+
+    def get_context_data(self, **kwargs):
+        context = super(PanelTV, self).get_context_data(**kwargs)
+        proyectos = Proyecto.objects.all()
+        context['proyectos'] = proyectos
+        return context
 
 class LoginTV(TemplateView):
     template_name = "users/login.html"
