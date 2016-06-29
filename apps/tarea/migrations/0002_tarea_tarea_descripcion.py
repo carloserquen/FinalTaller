@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import builtins
 
 
 class Migration(migrations.Migration):
@@ -15,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='tarea',
             name='tarea_descripcion',
-            field=models.TextField(default=builtins.dir),
+            field=models.TextField(default='holi'),
             preserve_default=False,
         ),
     ]
