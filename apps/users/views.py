@@ -35,6 +35,7 @@ class LoginFormView(FormView):
 
                 if user is not None:
                     login(request, user)
+                    messages.info(request, 'Bienvenido')
                     return HttpResponseRedirect(self.success_url)
                 else:
                     messages.error(request, 'username y/o password incorrectos')
