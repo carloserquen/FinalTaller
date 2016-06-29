@@ -8,5 +8,4 @@ tarea/__pycache__/
 proyecto/__pycache__/
 *.pyc
 template
-
-
+*.sqlite3
