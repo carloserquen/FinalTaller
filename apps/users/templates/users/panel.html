@@ -7,7 +7,7 @@
         <div class="dashboard-stats__item bg-orange">
           <i class="fa fa-comments"></i>
           <h3 class="dashboard-stats__title">
-            <span class="count-to" data-from="0" data-to="1250">0</span> 
+            <span class="count-to" data-from="0" data-to="{{proyectos_tamanio}}">0</span> 
             <small>Proyects</small>
           </h3>
         </div>
@@ -31,6 +31,7 @@
                <table id="mytable" class="table table-striped">
               <thead class="thead-custom">
                 <th>Nombre</th>
+                <th>Fecha de inicio</th>
                 <th>Status</th>
                 <th class="text-center">Editar</th>
                 <th class="text-center">Eliminar</th>
@@ -39,24 +40,29 @@
                 {% for proyecto in proyectos %}
                 <tr>
                   <td>{{ proyecto.nombre }}</td>
+                  <td>{{ proyecto.fecha_inicio }}</td>
                   {% if proyecto.concluido %}
                   <td><span class="label label-success">Concluido</span></td>
                   {% else %}
                   <td><span class="label label-info">En proceso</span></td>
                   {% endif %}
                   <td class="text-center">
+                    <a href="{% url 'proyecto_update' proyecto.pk %}">
                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                       <button class="btn btn-info btn-xs">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
                     </p>
+                    </a>
                   </td>
                   <td class="text-center">
+                    <a href="{% url 'proyecto_eliminar' proyecto.pk %}">
                     <p data-placement="top" data-toggle="tooltip" title="Delete">
                       <button class="btn btn-danger btn-xs">
                         <i class="fa fa-times" aria-hidden="true"></i>
                       </button>
                     </p>
+                    </a>
                   </td>
                 </tr>
                 {% endfor %}

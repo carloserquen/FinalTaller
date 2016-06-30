@@ -20,6 +20,7 @@ class PanelTV(LoginRequiredMixin, TemplateView):
         context = super(PanelTV, self).get_context_data(**kwargs)
         proyectos = Proyecto.objects.all()
         context['proyectos'] = proyectos
+        context['proyectos_tamanio'] = len(proyectos)
         return context
 
 class LoginTV(TemplateView):

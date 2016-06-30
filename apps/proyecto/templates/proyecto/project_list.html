@@ -5,10 +5,14 @@
               Proyectos <small>Listado</small>
 {% endblock %}
 {% block content %}
-
+      <div class="col-xs-12 col-md-6">
+        <a href="{% url 'proyecto_nuevo' %}"><button type="button" class="btn btn-primary mb_sm">Crear Proyecto</button></a>
+      </div>  
+      <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="row">
           <div class="panel-body">
+
             {% if proyectos %}
                <table id="mytable" class="table table-striped">
               <thead class="thead-custom">
@@ -29,11 +33,13 @@
                   <td><span class="label label-info">En proceso</span></td>
                   {% endif %}
                   <td class="text-center">
+                    <a href="{% url 'proyecto_update' proyecto.pk %}">
                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                       <button class="btn btn-info btn-xs">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </button>
                     </p>
+                    </a>
                   </td>
                   <td class="text-center">
                     <a href="{% url 'proyecto_eliminar' proyecto.pk %}">
@@ -50,6 +56,7 @@
             </table>
         {% endif %}  
           </div>
+      </div>
       </div>
       </div>
 {% endblock %}

@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from django.views.generic import DeleteView
 from django.views.generic import FormView
 from django.views.generic import CreateView
+from django.views.generic import UpdateView
 
 from .models import Proyecto
 from .forms import ProyectoForm
@@ -38,6 +39,13 @@ class ProjectsFV(CreateView):
     success_url = reverse_lazy('proyecto_listar')
     template_name = 'proyecto/project_create.html'
 
+
+class ProjectsUV(UpdateView):
+    model = Proyecto
+    form_class = ProyectoForm
+    template_name = "proyecto/proyecto_edit.html"
+    success_url = reverse_lazy('proyecto_listar')
+    
 
 
 class ProjectsLV(ListView):
