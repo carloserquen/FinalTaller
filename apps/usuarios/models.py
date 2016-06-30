@@ -9,3 +9,6 @@ class Usuario(models.Model):
         ("TeamMember", 'TeamMember'),
     )
     rol = models.CharField(max_length=1, choices=TIPO_CHOICES, default="TeamMember")
+
+    def __unicode__(self):
+    	return self.user.username

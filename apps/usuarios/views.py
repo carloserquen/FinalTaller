@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from .models import Usuario
-from apps.proyecto.models import Proyecto
+from apps.proyectos.models import Proyecto
 
 from braces.views import LoginRequiredMixin
 
@@ -18,7 +18,7 @@ class PanelTV(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PanelTV, self).get_context_data(**kwargs)
-        proyectos = Proyecto.objects.all()
+        proyectos = Proyecto.objects.filter(scrum_master=Usuario.objects.get(user=self.request.user))
         context['proyectos'] = proyectos
         context['proyectos_tamanio'] = len(proyectos)
         return context

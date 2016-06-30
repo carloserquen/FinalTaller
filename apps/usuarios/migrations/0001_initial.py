@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
             name='Usuario',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('email', models.EmailField(max_length=254)),
                 ('rol', models.CharField(default=b'TeamMember', max_length=1, choices=[(b'ScrumMember', b'ScrumMember'), (b'TeamMember', b'TeamMember')])),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
