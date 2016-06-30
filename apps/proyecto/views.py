@@ -1,7 +1,11 @@
+
+from django.shortcuts import render, get_object_or_404,redirect
+from django.views.generic import ListView, DeleteView
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
+
 from .models import Proyecto
 from .forms import ProyectoForm
-from django.shortcuts import render, get_object_or_404,redirect
-
 
 def list_project(request):
     proyectos = Proyecto.objects.all()
@@ -25,3 +29,13 @@ def proyecto_new(request):
         return render(request, 'proyecto/proyecto_edit.html',{'form':form})
 
 
+class ProjectsLV(ListView):
+    model = Proyecto
+    context_object_name = 'proyectos'
+    template_name = 'proyecto/project_list.html'
+
+
+class ProjectDeleteView(DeleteView):
+    model = Proyecto
+    template_name = "proyecto/project_delete.html"
+    success_url = reverse_lazy('proyecto_listar')

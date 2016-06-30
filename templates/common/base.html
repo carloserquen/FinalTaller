@@ -82,8 +82,12 @@
                 <li><a href="edit-profile.html">Edit profile</a></li>
               </ul>
             </li>
-            <li>
-              <a href="orders.html"><i class="fa fa-shopping-cart"></i> Proyectos</a>
+            <li class="sidebar-nav__dropdown">
+              <a href="{% url 'proyecto_listar' %}"><i class="fa fa-user"></i> Proyectos <i class="fa fa-angle-down"></i></a>
+              <ul class="sidebar-nav__submenu">
+                <li><a href="{% url 'proyecto_listar' %}">Listar Proyectos</a></li>
+                <li><a href="#">Crear Proyecto</a></li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -121,12 +125,15 @@
           <div class="col-xs-12">
             
             <h3 class="page-header">
+              {% block page_header %}
               Dashboard <small>Dashboard and statistics</small>
+              {% endblock %}
             </h3>
-
+            
             {% block content %}
              
             {% endblock %}
+            
 
           </div>
         </div> <!-- / .row -->
