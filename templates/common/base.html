@@ -13,12 +13,16 @@
   <title>{% block title%}{% endblock %}</title>
 
   <!-- CSS Plugins -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/plugins/datatables/datatables.min.css' %}">
   <!-- CSS Global -->
+
   <link href="{% static 'assets/css/styles.css' %}" rel="stylesheet">
+  {% block extra_css %}
+  {% endblock %}
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
@@ -86,7 +90,7 @@
               <a href="{% url 'proyecto_listar' %}"><i class="fa fa-user"></i> Proyectos <i class="fa fa-angle-down"></i></a>
               <ul class="sidebar-nav__submenu">
                 <li><a href="{% url 'proyecto_listar' %}">Listar Proyectos</a></li>
-                <li><a href="#">Crear Proyecto</a></li>
+                <li><a href="{% url 'proyecto_nuevo' %}">Crear Proyecto</a></li>
               </ul>
             </li>
           </ul>
@@ -148,6 +152,7 @@
     
     <!-- JS Global -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
     
     <!-- JS Plugins -->
@@ -158,6 +163,8 @@
     
     <!-- JS Custom -->
     <script src="{% static 'assets/js/custom.js' %}"></script>
+    {% block extra_js %}
+  {% endblock %}
 
   </body>
 </html>

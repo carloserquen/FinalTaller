@@ -13,6 +13,7 @@
                <table id="mytable" class="table table-striped">
               <thead class="thead-custom">
                 <th>Nombre</th>
+                <th>Fecha de inicio</th>
                 <th>Status</th>
                 <th class="text-center">Editar</th>
                 <th class="text-center">Eliminar</th>
@@ -20,7 +21,8 @@
               <tbody>
                 {% for proyecto in proyectos %}
                 <tr>
-                  <td>{{ proyecto.proyecto_nombre }}</td>
+                  <td>{{ proyecto.nombre }}</td>
+                  <td>{{ proyecto.fecha_inicio }}</td>
                   {% if proyecto.concluido %}
                   <td><span class="label label-success">Concluido</span></td>
                   {% else %}
