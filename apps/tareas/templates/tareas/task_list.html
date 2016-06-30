@@ -1,0 +1,72 @@
+
+
+{% extends 'common/base.html' %}
+{% block extra_css %}
+<style type="text/css">
+.dashboard-stats__title > small{
+  font-size: 12px !important
+}
+.dashboard-stats__item h4{
+  color: white !important;
+}
+</style>
+{% endblock %}
+{% block page_header %}
+              <small>Tareas de Proyecto: </small>{{ proyecto.nombre }}
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <div class="col-md-12 dashboard-stats__item bg-pink">
+      <h4>Pendientes</h4>
+      <div class="col-md-9">
+        <ul>
+          {% for tarea in tareas_pendientes %}
+          <li>{{ tarea.nombre }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h3 class="dashboard-stats__title">
+          <span class="count-to" data-from="0" data-to="{{ tareas_pendientes_cantidad }}">0</span> 
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <div class="col-md-12 dashboard-stats__item bg-orange">
+      <h4>En Desarrollo</h4>
+      <div class="col-md-9">
+        <ul>
+          {% for tarea in tareas_en_desarrollo %}
+          <li>{{ tarea.nombre }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h3 class="dashboard-stats__title">
+          <span class="count-to" data-from="0" data-to="{{ tareas_en_desarrollo_cantidad }}">0</span> 
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <div class="col-md-12 dashboard-stats__item bg-teal">
+      <h4>Concluidas</h4>
+      <div class="col-md-9">
+        <ul>
+          {% for tarea in tareas_concluidas %}
+          <li>{{ tarea.nombre }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h3 class="dashboard-stats__title">
+          <span class="count-to" data-from="0" data-to="{{ tareas_concluidas_cantidad }}">0</span> 
+          <small>Pendientes</small>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
