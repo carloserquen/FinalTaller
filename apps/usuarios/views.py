@@ -21,6 +21,7 @@ class PanelTV(LoginRequiredMixin, TemplateView):
         proyectos = Proyecto.objects.filter(scrum_master=Usuario.objects.get(user=self.request.user))
         context['proyectos'] = proyectos
         context['proyectos_tamanio'] = len(proyectos)
+        context['usuarios_tamanio'] = len(Usuario.objects.all())
         return context
 
 class LoginTV(TemplateView):

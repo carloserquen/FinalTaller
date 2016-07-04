@@ -161,3 +161,8 @@ class TareasLV(ListView):
         queryset = Tarea.objects.filter(owner=Usuario.objects.get(user=self.request.user))
         print len(queryset), "<-- len --"
         return queryset
+
+class TareaDeleteView(DeleteView):
+    model = Tarea
+    template_name = "tareas/task_delete.html"
+    success_url = reverse_lazy('mis_tareas_listar')        
