@@ -36,19 +36,31 @@
               </div>
               <div class="form-group col-md-12">
                 <div class="radio col-md-4">
-                    <input type="radio" name="pendiente" id="optionsRadios1" value="option1">
+                    {% if tarea.estado == 'Pendiente' %}
+                    <input type="radio" name="pendiente" id="optionsRadios1" class='radio-button' value="option1" checked="checked">
+                    {% else %}
+                    <input type="radio" name="pendiente" id="optionsRadios1" class='radio-button' value="option1" >
+                    {% endif %}
                     <label for="optionsRadios1">
                       Pendiente
                     </label>
                 </div>
                 <div class="radio col-md-4">
-                    <input type="radio" name="desarrollo" id="optionsRadios2" value="option2">
+                    {% if tarea.estado == 'Desarrollo' %}
+                    <input type="radio" name="desarrollo" id="optionsRadios2" class='radio-button' value="option2" checked="checked">
+                    {% else %}
+                    <input type="radio" name="desarrollo" id="optionsRadios2" class='radio-button' value="option2">
+                    {% endif %}
                     <label for="optionsRadios2">
                       Desarollo
                     </label>
                 </div>
                 <div class="radio col-md-4">
-                    <input type="radio" name="concluido" id="optionsRadios3" value="option3">
+                    {% if tarea.estado == 'Concluido' %}
+                    <input type="radio" name="concluido" id="optionsRadios3" class='radio-button' value="option3" checked="checked">>
+                    {% else %}
+                    <input type="radio" name="concluido" id="optionsRadios3" class='radio-button' value="option3">
+                    {% endif %}
                     <label for="optionsRadios3">
                       Concluido
                     </label>
@@ -92,6 +104,11 @@
               }
           });
       }
+  });
+
+  $('.radio-button').on("click", function(event){
+      $('.radio-button').prop('checked', false);
+       $(this).prop('checked', true);
   });
 
   </script>
