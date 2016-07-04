@@ -39,7 +39,7 @@
               <tbody>
                 {% for proyecto in proyectos %}
                 <tr>
-                  <td><a href="{% url 'proyecto_tareas' proyecto.pk %}">{{ proyecto.nombre }}</a></td>
+                  <td><a href="{% url 'proyecto_tareas_panel' proyecto.pk %}">{{ proyecto.nombre }}</a></td>
                   <td>{{ proyecto.fecha_inicio }}</td>
                   {% if proyecto.concluido %}
                   <td><span class="label label-success">Concluido</span></td>

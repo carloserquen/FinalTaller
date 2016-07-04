@@ -16,6 +16,11 @@
 {% endblock %}
 {% block content %}
 <div class="row">
+  <div class="col-xs-12 col-md-6">
+        <a href="{% url 'tarea_nueva' proyecto.id %}"><button type="button" class="btn btn-primary mb_sm">Crear Tarea</button></a>
+      </div>  
+</div>
+<div class="row">
   <div class="col-xs-12 col-md-4">
     <div class="col-md-12 dashboard-stats__item bg-pink">
       <h4>Pendientes</h4>
@@ -63,7 +68,6 @@
       <div class="col-md-3">
         <h3 class="dashboard-stats__title">
           <span class="count-to" data-from="0" data-to="{{ tareas_concluidas_cantidad }}">0</span> 
-          <small>Pendientes</small>
         </h3>
       </div>
     </div>

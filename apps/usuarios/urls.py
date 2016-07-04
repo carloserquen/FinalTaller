@@ -6,6 +6,8 @@ from .views import logout_view
 from .views import LoginFormView
 from .views import RegisterFormView
 
+from .api import usuarios_get
+
 urlpatterns = [
     url(r'^users/panel/$', PanelTV.as_view(), name='users_panel'),
     url(r'^$', LoginTV.as_view(), name='users_login'),
@@ -15,4 +17,5 @@ urlpatterns = [
     url(r'^users/logout/$', logout_view, name='users_logout'),
     #url (r'^tarea/(?P<pk>[0-9]+)/$', views.tarea_detail, name='tarea_detalle'),
     #url(r'^tarea/new/$', views.tarea_new, name='tarea_new'),
+    url(r'^api/users/members/$', usuarios_get, name='users_api'),
 ]

@@ -15,7 +15,7 @@ from .forms import ProyectoForm
 from apps.usuarios.models import Usuario
 
 
-class ProjectsFV(CreateView):
+class ProjectsCV(CreateView):
     model = Proyecto
     form_class = ProyectoForm
     success_url = reverse_lazy('proyecto_listar')

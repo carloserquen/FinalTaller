@@ -1,0 +1,98 @@
+
+
+{% extends 'common/base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+{% endblock %}
+{% block page_header %}
+              Tarea <small>Crear</small>
+{% endblock %}
+{% block content %}
+
+      <div class="panel panel-default">
+        <div class="row">
+          <div class="panel-body col-md-6 col-md-offset-3">
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'tarea_nueva_post' %}">{% csrf_token %}
+
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="3" placeholder="Descripción" name="descripcion"></textarea>
+              </div>
+              <div class="form-group">
+                <input class="form-control datepicker" id="datepicker" name="fecha_termino" type="text" placeholder="Fecha de termino">
+              </div>
+              <div class="form-group col-md-12">
+                <div class="radio col-md-4">
+                    <input type="radio" name="pendiente" id="optionsRadios1" value="option1">
+                    <label for="optionsRadios1">
+                      Pendiente
+                    </label>
+                </div>
+                <div class="radio col-md-4">
+                    <input type="radio" name="desarrollo" id="optionsRadios2" value="option2">
+                    <label for="optionsRadios2">
+                      Desarollo
+                    </label>
+                </div>
+                <div class="radio col-md-4">
+                    <input type="radio" name="concluido" id="optionsRadios3" value="option3">
+                    <label for="optionsRadios3">
+                      Concluido
+                    </label>
+                </div>
+              </div>
+              <input type="hidden" name="proyecto_pk" value="{{proyecto_pk}}">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Responsable?" id="members" name="username">
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          </div>
+      </div>
+      </div>
+{% endblock %}
+
+{% block extra_js %}
+ <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  });
+
+  $("#members").autocomplete({
+      source: function (request, response) {
+          $.ajax({
+              url: "/api/users/members/",
+              data: { query: request.term },
+              success: function (data) {
+                console.log(data.results, "result");
+                  var transformed = $.map(data.results, function (el) {
+                    console.log(el, "el");
+                      return {
+                          label: el['nombre'],
+                          id: el['id']
+                      };
+                  });
+                  response(transformed);
+              },
+              error: function () {
+                  response([]);
+              }
+          });
+      }
+  });
+
+  </script>
+{% endblock %}
