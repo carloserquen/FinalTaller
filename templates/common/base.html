@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="assets/ico/favicon.ico">
+  <!--<link rel="shortcut icon" href="assets/ico/favicon.ico">-->
 
   <title>{% block title%}{% endblock %}</title>
 
@@ -81,18 +81,13 @@
             </li>
             <li class="sidebar-nav__heading">Pages</li>
             <li class="sidebar-nav__dropdown">
-              <a href="#"><i class="fa fa-user"></i> Account <i class="fa fa-angle-down"></i></a>
-              <ul class="sidebar-nav__submenu">
-                <li><a href="edit-profile.html">Edit profile</a></li>
-              </ul>
-            </li>
-            <li class="sidebar-nav__dropdown">
               <a href="{% url 'proyecto_listar' %}"><i class="fa fa-user"></i> Proyectos <i class="fa fa-angle-down"></i></a>
               <ul class="sidebar-nav__submenu">
                 <li><a href="{% url 'proyecto_listar' %}">Listar Proyectos</a></li>
                 <li><a href="{% url 'proyecto_nuevo' %}">Crear Proyecto</a></li>
               </ul>
             </li>
+            <li><a href="{% url 'mis_tareas_listar' %}"><i class="fa fa-shopping-cart"></i>Mis tareas</a></li>
           </ul>
         </nav>
 

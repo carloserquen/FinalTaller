@@ -2,38 +2,27 @@
 
 {% extends 'common/base.html' %}
 {% block page_header %}
-              Proyectos <small>Listado</small>
+              Mis tareas <small>Listado</small>
 {% endblock %}
 {% block content %}
-      <div class="col-xs-12 col-md-6">
-        <a href="{% url 'proyecto_nuevo' %}"><button type="button" class="btn btn-primary mb_sm">Crear Proyecto</button></a>
-      </div>  
       <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="row">
           <div class="panel-body">
 
-            {% if proyectos %}
+            {% if tareas %}
                <table id="mytable" class="table table-striped">
               <thead class="thead-custom">
                 <th>Nombre</th>
-                <th>Fecha de inicio</th>
-                <th>Status</th>
                 <th class="text-center">Editar</th>
                 <th class="text-center">Eliminar</th>
               </thead>
               <tbody>
-                {% for proyecto in proyectos %}
+                {% for tarea in tareas %}
                 <tr>
-                  <td><a href="{% url 'proyecto_tareas_panel' proyecto.pk %}">{{ proyecto.nombre }}</a></td>
-                  <td>{{ proyecto.fecha_inicio }}</td>
-                  {% if proyecto.concluido %}
-                  <td><span class="label label-success">Concluido</span></td>
-                  {% else %}
-                  <td><span class="label label-info">En proceso</span></td>
-                  {% endif %}
+                  <td><a href="#">{{ tarea.nombre }}</a></td>
                   <td class="text-center">
-                    <a href="{% url 'proyecto_update' proyecto.pk %}">
+                    <a href="{% url 'tarea_editar' tarea.pk %}">
                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                       <button class="btn btn-info btn-xs">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -42,7 +31,7 @@
                     </a>
                   </td>
                   <td class="text-center">
-                    <a href="{% url 'proyecto_eliminar' proyecto.pk %}">
+                    <a href="#">
                     <p data-placement="top" data-toggle="tooltip" title="Delete">
                       <button class="btn btn-danger btn-xs">
                         <i class="fa fa-times" aria-hidden="true"></i>
@@ -54,8 +43,6 @@
                 {% endfor %}
               </tbody>
             </table>
-         {% else %}
-                <span class="text-center">0 proyectos</span>
         {% endif %}  
           </div>
       </div>

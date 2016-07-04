@@ -151,3 +151,13 @@ class TareaEditarFormView(FormView):
         except Exception, e:
             print e, "<--Error Empleo Datos Puesto--"
             
+
+class TareasLV(ListView):
+    model = Tarea
+    context_object_name = 'tareas'
+    template_name = 'tareas/task_list.html'
+
+    def get_queryset(self):
+        queryset = Tarea.objects.filter(owner=Usuario.objects.get(user=self.request.user))
+        print len(queryset), "<-- len --"
+        return queryset
