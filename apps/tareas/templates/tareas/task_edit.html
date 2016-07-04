@@ -23,16 +23,16 @@
                 {% endfor %}
             {% endif %}
 
-            <form method="POST" action="{% url 'tarea_nueva_post' %}">{% csrf_token %}
+            <form method="POST" action="{% url 'tarea_editar_post' tarea.pk %}">{% csrf_token %}
 
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" value="{{ tarea.nombre }}" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" rows="3" placeholder="Descripción" name="descripcion" required></textarea>
+                <textarea class="form-control" rows="3" placeholder="Descripción" name="descripcion" required>{{ tarea.descripcion }}</textarea>
               </div>
               <div class="form-group">
-                <input class="form-control datepicker" id="datepicker" name="fecha_termino" type="text" placeholder="Fecha de termino" required>
+                <input class="form-control datepicker" id="datepicker" name="fecha_termino" type="text" placeholder="Fecha de termino" value="{{ tarea.fecha_terminar|date:'Y-m-d' }}" required>
               </div>
               <div class="form-group col-md-12">
                 <div class="radio col-md-4">
@@ -54,9 +54,9 @@
                     </label>
                 </div>
               </div>
-              <input type="hidden" name="proyecto_pk" value="{{proyecto_pk}}">
+              <input type="hidden" name="proyecto_pk" value="{{ proyecto_pk }}">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Responsable?" id="members" name="username" required>
+                <input type="text" class="form-control" placeholder="Responsable?" id="members" name="username" value="{{ tarea.owner }}" required>
               </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

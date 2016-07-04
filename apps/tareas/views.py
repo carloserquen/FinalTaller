@@ -51,6 +51,20 @@ class TareaNuevaTV(TemplateView):
         return context
 
 
+class TareaEditTV(TemplateView):
+    #success_url = reverse_lazy('proyecto_tareas_panel')
+    template_name = 'tareas/task_edit.html'
+
+    def get_context_data(self, **kwargs):
+        proyecto_pk = kwargs.get('proyecto_pk')
+        tarea_pk = kwargs.get('tarea_pk')
+        tarea = Tarea.objects.get(pk=tarea_pk)
+        context = super(TareaEditTV, self).get_context_data(**kwargs)
+        context['proyecto_pk'] = tarea.proyecto.id
+        context['tarea'] = tarea
+        return context
+
+
 class TareaNuevaFormView(FormView):
     success_url = reverse_lazy('home')
 
@@ -62,7 +76,7 @@ class TareaNuevaFormView(FormView):
         try:
             proyecto_pk = request.POST.get('proyecto_pk')
             proyecto = Proyecto.objects.get(pk=proyecto_pk)
-            usuario = Usuario.objects.get(user__username=request.POST.get('username'))
+            
             pendiente = request.POST.get('pendiente', None)
             desarrollo = request.POST.get('desarrollo', None)
             concluido = request.POST.get('concluido', None)
@@ -72,7 +86,56 @@ class TareaNuevaFormView(FormView):
             tarea.descripcion = request.POST.get('descripcion')
             tarea.fecha_terminar = request.POST.get('fecha_termino')
             tarea.proyecto = proyecto
-            tarea.owner = usuario
+
+            try:
+                usuario = Usuario.objects.get(user__username=request.POST.get('username'))
+                tarea.owner = usuario
+            except Exception, e:
+                print "No hay usuario"
+
+            if pendiente:
+                tarea.estado = "Pendiente"
+            elif desarrollo:
+                tarea.estado = "Desarrollo"
+            elif concluido:
+                tarea.estado = "Concluido"
+
+            tarea.save()
+
+            return HttpResponseRedirect('/proyecto/'+proyecto_pk+'/tareas/')
+
+        except Exception, e:
+            print e, "<--Error Empleo Datos Puesto--"
+            
+
+class TareaEditarFormView(FormView):
+    success_url = reverse_lazy('home')
+
+    def post(self, request, *args, **kwargs):
+        print request.POST, "<--registro POST Empleo Datos --"
+        #print request.FILES, "<--registro files--"
+
+        response_data = {}
+        try:
+            tarea_pk = kwargs.get('tarea_pk')
+            proyecto_pk = request.POST.get('proyecto_pk')
+            proyecto = Proyecto.objects.get(pk=proyecto_pk)
+            
+            pendiente = request.POST.get('pendiente', None)
+            desarrollo = request.POST.get('desarrollo', None)
+            concluido = request.POST.get('concluido', None)
+
+            tarea = Tarea.objects.get(pk=tarea_pk)
+            tarea.nombre = request.POST.get('nombre')
+            tarea.descripcion = request.POST.get('descripcion')
+            tarea.fecha_terminar = request.POST.get('fecha_termino')
+            tarea.proyecto = proyecto
+
+            try:
+                usuario = Usuario.objects.get(user__username=request.POST.get('username'))
+                tarea.owner = usuario
+            except Exception, e:
+                print "No hay usuario"
 
             if pendiente:
                 tarea.estado = "Pendiente"
