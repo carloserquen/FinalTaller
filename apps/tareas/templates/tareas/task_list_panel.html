@@ -29,7 +29,7 @@
         <div class="col-md-12 dashboard-stats__item bg-pink">
             <h4>Pendientes</h4>
             <div class="col-md-9">
-                <ul class="droppable connectedSortable pending-list" data-status="pending">
+                <ul class="droppable connectedSortable pending-list" data-status="Pendiente">
                     {% for tarea in tareas_pendientes %}
                     <li class="draggable" itemid="{{tarea.pk}}"><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
                     {% endfor %}
@@ -46,7 +46,7 @@
         <div class="col-md-12 dashboard-stats__item bg-orange">
             <h4>En Desarrollo</h4>
             <div class="col-md-9">
-                <ul class="droppable connectedSortable development-list" data-status="development">
+                <ul class="droppable connectedSortable development-list" data-status="Desarrollo">
                     {% for tarea in tareas_en_desarrollo %}
                     <li class="draggable" itemid="{{tarea.pk}}"><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
                     {% endfor %}
@@ -63,7 +63,7 @@
         <div class="col-md-12 dashboard-stats__item bg-teal">
             <h4>Concluidas</h4>
             <div class="col-md-9">
-                <ul class="droppable connectedSortable finish-list" data-status="finish">
+                <ul class="droppable connectedSortable finish-list" data-status="Concluido">
                     {% for tarea in tareas_concluidas %}
                     <li class="draggable" itemid="{{tarea.pk}}"><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
                     {% endfor %}

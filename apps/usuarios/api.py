@@ -3,6 +3,7 @@ import logging
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .models import Usuario
+from apps.tareas.models import Tarea
 
 from rest_framework import viewsets
 from rest_framework import generics
@@ -42,9 +43,11 @@ def usuarios_get(request):
 @api_view(['PUT', ])
 def tareas_update(request, pk):
     data = {}
-    print pk
+    print request.data.get("status")
     try:
-
+        tarea = Tarea.objects.get(id=pk)
+        tarea.estado = request.data.get("status")
+        tarea.save()
         return Response(data)
 
     except Exception, e:
