@@ -7,6 +7,7 @@ from .views import LoginFormView
 from .views import RegisterFormView
 
 from .api import usuarios_get
+from .api import tareas_update
 
 urlpatterns = [
     url(r'^users/panel/$', PanelTV.as_view(), name='users_panel'),
@@ -18,4 +19,5 @@ urlpatterns = [
     #url (r'^tarea/(?P<pk>[0-9]+)/$', views.tarea_detail, name='tarea_detalle'),
     #url(r'^tarea/new/$', views.tarea_new, name='tarea_new'),
     url(r'^api/users/members/$', usuarios_get, name='users_api'),
+    url(r'^api/tareas/(?P<pk>.+)/$', tareas_update, name='tareas_api'),
 ]

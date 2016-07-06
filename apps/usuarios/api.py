@@ -35,3 +35,15 @@ def usuarios_get(request):
         logging.error(e)
         content = {'Error': 'Not login as enterprise'}
         return Response(content, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT', ])
+def tareas_update(request):
+    data = {}
+    try:
+
+        return Response(data)
+
+    except Exception, e:
+        logging.error(e)
+        content = {'Error': 'Not login as enterprise'}
+        return Response(content, status=status.HTTP_400_BAD_REQUEST)

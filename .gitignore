@@ -1,4 +1,4 @@
-virtualenv/
+virtual/
 contacto/migrations/__pycache__/
 tarea/migrations/__pycache__/
 proyecto/migrations/__pycache__/
@@ -8,4 +8,3 @@ tarea/__pycache__/
 proyecto/__pycache__/
 *.pyc
 template
-*.sqlite3

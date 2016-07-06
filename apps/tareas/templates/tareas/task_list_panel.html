@@ -1,76 +1,136 @@
-
-
-{% extends 'common/base.html' %}
-{% block extra_css %}
+ {% extends 'common/base.html' %} {% block extra_css %}
 <style type="text/css">
-.dashboard-stats__title > small{
-  font-size: 12px !important
-}
-.dashboard-stats__item h4{
-  color: white !important;
-}
+    .dashboard-stats__title > small {
+        font-size: 12px !important
+    }
+
+    .droppable {
+        min-height: 150px;
+    }
+
+    .dashboard-stats__item h4 {
+        color: white !important;
+    }
 </style>
-{% endblock %}
-{% block page_header %}
-              <small>Tareas de Proyecto: </small>{{ proyecto.nombre }}
-{% endblock %}
-{% block content %}
+{% endblock %} {% block page_header %}
+<small>Tareas de Proyecto: </small>{{ proyecto.nombre }} {% endblock %} {% block content %}
+
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+
 <div class="row">
-  <div class="col-xs-12 col-md-6">
-        <a href="{% url 'tarea_nueva' proyecto.id %}"><button type="button" class="btn btn-primary mb_sm">Crear Tarea</button></a>
-      </div>  
+    <div class="col-xs-12 col-md-6">
+        <a href="{% url 'tarea_nueva' proyecto.id %}">
+            <button type="button" class="btn btn-primary mb_sm">Crear Tarea</button>
+        </a>
+    </div>
 </div>
 <div class="row">
-  <div class="col-xs-12 col-md-4">
-    <div class="col-md-12 dashboard-stats__item bg-pink">
-      <h4>Pendientes</h4>
-      <div class="col-md-9">
-        <ul>
-          {% for tarea in tareas_pendientes %}
-          <li><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h3 class="dashboard-stats__title">
-          <span class="count-to" data-from="0" data-to="{{ tareas_pendientes_cantidad }}">0</span> 
+    <div class="col-xs-12 col-md-4">
+        <div class="col-md-12 dashboard-stats__item bg-pink">
+            <h4>Pendientes</h4>
+            <div class="col-md-9">
+                <ul class="droppable connectedSortable pending-list" data-status="pending">
+                    {% for tarea in tareas_pendientes %}
+                    <li class="draggable" itemid="{{tarea.pk}}"><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h3 class="dashboard-stats__title">
+          <span class="count-to pending-count" data-from="0" data-to="{{ tareas_pendientes_cantidad }}">0</span>
         </h3>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <div class="col-md-12 dashboard-stats__item bg-orange">
-      <h4>En Desarrollo</h4>
-      <div class="col-md-9">
-        <ul>
-          {% for tarea in tareas_en_desarrollo %}
-          <li><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h3 class="dashboard-stats__title">
-          <span class="count-to" data-from="0" data-to="{{ tareas_en_desarrollo_cantidad }}">0</span> 
+    <div class="col-xs-12 col-md-4">
+        <div class="col-md-12 dashboard-stats__item bg-orange">
+            <h4>En Desarrollo</h4>
+            <div class="col-md-9">
+                <ul class="droppable connectedSortable development-list" data-status="development">
+                    {% for tarea in tareas_en_desarrollo %}
+                    <li class="draggable" itemid="{{tarea.pk}}"><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h3 class="dashboard-stats__title">
+          <span class="count-to development-count" data-from="0" data-to="{{ tareas_en_desarrollo_cantidad }}">0</span>
         </h3>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <div class="col-md-12 dashboard-stats__item bg-teal">
-      <h4>Concluidas</h4>
-      <div class="col-md-9">
-        <ul>
-          {% for tarea in tareas_concluidas %}
-          <li><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h3 class="dashboard-stats__title">
-          <span class="count-to" data-from="0" data-to="{{ tareas_concluidas_cantidad }}">0</span> 
+    <div class="col-xs-12 col-md-4">
+        <div class="col-md-12 dashboard-stats__item bg-teal">
+            <h4>Concluidas</h4>
+            <div class="col-md-9">
+                <ul class="droppable connectedSortable finish-list" data-status="finish">
+                    {% for tarea in tareas_concluidas %}
+                    <li class="draggable" itemid="{{tarea.pk}}"><a href="{% url 'tarea_editar' tarea.pk %}">{{ tarea.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h3 class="dashboard-stats__title">
+          <span class="count-to finish-count" data-from="0" data-to="{{ tareas_concluidas_cantidad }}">0</span>
         </h3>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+<style media="screen">
+    .draggable {
+        padding: 10px 0px;
+        margin: 5px;
+    }
+
+    .dashboard-stats__item {
+        overflow: inherit !important;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var $pendint_count = $(".pending-count");
+        var $development_count = $(".development-count");
+        var $finish_count = $(".finish-count");
+
+        function update() {
+            $pendint_count.html($(".pending-list li").length);
+            $development_count.html($(".development-list li").length)
+            $finish_count.html($(".finish-list li").length)
+        };
+
+
+        $(".droppable").sortable({
+            connectWith: ['.connectedSortable'],
+            stop: function() {
+                if (isInvalid) $(this).sortable('cancel');
+            }
+        }).droppable({
+            out: function() {},
+            over: function() {
+                isInvalid = false;
+            },
+            drop: function(event, ui) {
+                var status = $(event.target).data("status");
+                var itemid = $(event.originalEvent.toElement).closest('li').attr("itemid");
+                $.ajax({
+                    type: 'PUT',
+                    url: '/api/tareas/' + itemid,
+                    data: {
+                        status: status,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function() {
+
+                    }
+                });
+                console.log("estatus y pk para cambiar via ajax");
+                console.log(status, itemid);
+                setTimeout(function() {
+                    update();
+                }, 100)
+            }
+        });
+    })
+</script>
 {% endblock %}
