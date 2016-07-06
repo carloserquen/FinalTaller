@@ -1,5 +1,7 @@
 import logging
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 from .models import Usuario
 
 from rest_framework import viewsets
@@ -36,9 +38,11 @@ def usuarios_get(request):
         content = {'Error': 'Not login as enterprise'}
         return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['PUT', ])
-def tareas_update(request):
+def tareas_update(request, pk):
     data = {}
+    print pk
     try:
 
         return Response(data)
